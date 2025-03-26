@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>오뚜기반</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ffeb3b;
+            color: #d32f2f;
+            font-size: 32px;
+            font-weight: bold;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 24px;
+            font-weight: bold;
+            background-color: #d32f2f;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background-color: #b71c1c;
+        }
+        #supportCancelButton {
+            background-color: #1976d2;
+        }
+        #supportCancelButton:hover {
+            background-color: #1565c0;
+        }
+    </style>
+</head>
+<body>
+<h1>오뚜기반 최고</h1>
+<p>응원 수: <span id="count">0</span></p>
+<button onclick="increaseCount()">응원</button>
+<button id="supportCancelButton" onclick="decreaseCount()">응원 취소</button>
+
+<script>
+    // localStorage에서 응원 횟수 가져오기, 없으면 0으로 설정
+    let count = localStorage.getItem("supportCount") ? parseInt(localStorage.getItem("supportCount")) : 0;
+    document.getElementById("count").innerText = count;
+
+    // 응원 수 증가
+    function increaseCount() {
+        count++;
+        document.getElementById("count").innerText = count;
+        localStorage.setItem("supportCount", count);
+    }
+
+    // 응원 수 감소
+    function decreaseCount() {
+        if (count > 0) { // 0보다 클 때만 감소
+            count--;
+            document.getElementById("count").innerText = count;
+            localStorage.setItem("supportCount", count);
+        }
+    }
+</script>
+</body>
+</html>
